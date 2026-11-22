@@ -4,21 +4,21 @@ on:
   push:
     branches: ["main"]
     paths:
-      - "fastmcp_slim/fastmcp/utilities/json_schema_type.py"
-      - "fastmcp_slim/fastmcp/utilities/json_schema.py"
-      - "fastmcp_slim/fastmcp/utilities/openapi/**"
-      - "fastmcp_slim/fastmcp/server/providers/openapi/**"
-      - "fastmcp_slim/fastmcp/client/mixins/tools.py"
+      - "src/fastmcp/utilities/json_schema_type.py"
+      - "src/fastmcp/utilities/json_schema.py"
+      - "src/fastmcp/utilities/openapi/**"
+      - "src/fastmcp/server/providers/openapi/**"
+      - "src/fastmcp/client/mixins/tools.py"
       - "tests/utilities/json_schema_type/test_real_world_schemas.py"
       - ".github/workflows/run-schema-crash-test.yml"
 
   pull_request:
     paths:
-      - "fastmcp_slim/fastmcp/utilities/json_schema_type.py"
-      - "fastmcp_slim/fastmcp/utilities/json_schema.py"
-      - "fastmcp_slim/fastmcp/utilities/openapi/**"
-      - "fastmcp_slim/fastmcp/server/providers/openapi/**"
-      - "fastmcp_slim/fastmcp/client/mixins/tools.py"
+      - "src/fastmcp/utilities/json_schema_type.py"
+      - "src/fastmcp/utilities/json_schema.py"
+      - "src/fastmcp/utilities/openapi/**"
+      - "src/fastmcp/server/providers/openapi/**"
+      - "src/fastmcp/client/mixins/tools.py"
       - "tests/utilities/json_schema_type/test_real_world_schemas.py"
       - ".github/workflows/run-schema-crash-test.yml"
 
@@ -34,10 +34,10 @@ jobs:
     timeout-minutes: 45
 
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        uses: astral-sh/setup-uv@v7
 
       - name: Set up Python
         run: uv python install 3.12
