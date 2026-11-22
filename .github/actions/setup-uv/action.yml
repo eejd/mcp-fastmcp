@@ -5,7 +5,7 @@ inputs:
   python-version:
     description: "Python version to use"
     required: false
-    default: "3.11"
+    default: "3.10"
   resolution:
     description: "Dependency resolution: locked, upgrade, or lowest-direct"
     required: false
@@ -15,7 +15,7 @@ runs:
   using: "composite"
   steps:
     - name: Install uv
-      uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+      uses: astral-sh/setup-uv@v7
       with:
         enable-cache: true
         cache-dependency-glob: "uv.lock"
@@ -23,13 +23,11 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      env:
-        RESOLUTION: ${{ inputs.resolution }}
       run: |
-        if [ "$RESOLUTION" == "locked" ]; then
+        if [ "${{ inputs.resolution }}" == "locked" ]; then
           uv sync --locked
-        elif [ "$RESOLUTION" == "upgrade" ]; then
+        elif [ "${{ inputs.resolution }}" == "upgrade" ]; then
           uv sync --upgrade
         else
-          uv sync --resolution "$RESOLUTION"
+          uv sync --resolution ${{ inputs.resolution }}
         fi
